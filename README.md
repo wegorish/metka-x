@@ -9,9 +9,9 @@
 index.html          разметка страницы
 css/styles.css      стили: десктоп (макет 1920 px) и адаптив (1399 / 1199 / 899 / 599 px)
 js/main.js          бургер-меню и ссылки-заглушки
-assets/fonts/       Golos Text и Inter (woff2, self-hosted)
+assets/fonts/       Golos Text (woff2, self-hosted)
 assets/img/         фотографии (webp)
-assets/icons/       иконки и логотип (svg)
+assets/icons/       иконки и логотипы (svg); logo-mark.svg — знак из логотипа шапки, для футера
 ```
 
 Все пути относительные, поэтому сайт работает и из корня домена, и из подпапки `/metka-x/`.

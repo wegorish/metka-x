@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Метка — адресники для собак</title>
+  <meta name="description" content="Адресники для собак с вашими контактами. Выберите форму, цвет и размер в конструкторе.">
+  <meta name="theme-color" content="#1d1d1d">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Метка — адресники для собак">
+  <meta property="og:description" content="Для тех, кого ждут дома. Адресники с вашими контактами: форма, цвет и размер — в конструкторе.">
+  <link rel="icon" href="data:,">
+  <link rel="preload" href="assets/fonts/golos-text-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/golos-text-cyrillic-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">К содержимому</a>
+
+  <!-- Шапка -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__logo" href="#top" aria-label="Метка — в начало страницы">
+        <img src="assets/icons/logo.svg" width="98" height="30" alt="Метка">
+      </a>
+      <nav class="nav" id="nav" aria-label="Разделы страницы">
+        <a href="#advantages">Преимущества</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#configurator">Конструктор</a>
+        <a href="#payment">Оплата и доставка</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Стартовая -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title" id="hero-title">Для тех, кого<br>ждут <span class="accent">дома</span></h1>
+          <p class="hero__lead">
+            <span>Адресники для собак с вашими контактами.</span>
+            <span>Выберите форму, цвет и размер в конструкторе.</span>
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#configurator">Собрать адресник</a>
+            <a class="btn btn--outline" href="#gallery">Смотреть примеры</a>
+          </div>
+        </div>
+        <div class="hero__art">
+          <img class="hero__mark" src="assets/icons/hero-mark.svg" width="867" height="869" alt="">
+          <div class="hero__dog">
+            <img src="assets/img/hero-dog.webp" alt="Далматин с красным ошейником и адресником" fetchpriority="high">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Преимущества -->
+    <section class="section section--light advantages" id="advantages" aria-labelledby="advantages-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Преимущества</p>
+          <h2 class="section__title" id="advantages-title">Маленькая деталь — большое спокойствие</h2>
+        </div>
+        <ul class="cards">
+          <li class="card">
+            <div class="card__icon">
+              <img src="assets/icons/adv-contacts.svg" width="98" height="98" alt="">
+            </div>
+            <h3 class="card__title">Контакты рядом</h3>
+            <p class="card__text">Ваш телефон на жетоне: нашедший сможет позвонить сразу, без приложений и регистрации.</p>
+          </li>
+          <li class="card">
+            <div class="card__icon">
+              <img src="assets/icons/adv-design.svg" width="117" height="98" alt="">
+            </div>
+            <h3 class="card__title">Свой дизайн</h3>
+            <p class="card__text">Форма, цвет, размер и текст гравировки — всё подбирается под вашего питомца.</p>
+          </li>
+          <li class="card">
+            <div class="card__icon">
+              <span class="card__icon-pair">
+                <img class="pair-small" src="assets/icons/adv-size-2.svg" width="73.5" height="73.5" alt="">
+                <img class="pair-big" src="assets/icons/adv-size-1.svg" width="98" height="98" alt="">
+              </span>
+            </div>
+            <h3 class="card__title">Удобный размер</h3>
+            <p class="card__text">Подскажем размер под вес и породу, чтобы адресник не мешал на прогулке.</p>
+          </li>
+          <li class="card">
+            <div class="card__icon">
+              <img src="assets/icons/adv-preview.svg" width="133" height="112" alt="">
+            </div>
+            <h3 class="card__title">Видно до заказа</h3>
+            <p class="card__text">В конструкторе сразу видно, как будет выглядеть адресник до оплаты.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. Галерея -->
+    <section class="section section--dark gallery-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Галерея</p>
+          <h2 class="section__title" id="gallery-title">Питомцы с адресниками</h2>
+        </div>
+        <!-- TODO: кнопка пока не активна — подгрузка остальных фото будет добавлена позже -->
+        <button class="btn btn--outline gallery__more" type="button">Смотреть ещё</button>
+        <div class="gallery">
+          <figure class="gallery__item g1"><img src="assets/img/gallery-1.webp" alt="Питомец с адресником" loading="lazy"></figure>
+          <figure class="gallery__item g2"><img src="assets/img/gallery-2.webp" alt="Питомец с адресником" loading="lazy"></figure>
+          <figure class="gallery__item g3"><img src="assets/img/gallery-3.webp" alt="Питомец с адресником" loading="lazy"></figure>
+          <figure class="gallery__item g4"><img src="assets/img/gallery-4.webp" alt="Питомец с адресником" loading="lazy"></figure>
+          <figure class="gallery__item g5"><img src="assets/img/gallery-5.webp" alt="Питомец с адресником" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Конструктор -->
+    <section class="section section--light configurator" id="configurator" aria-labelledby="configurator-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Конструктор</p>
+          <h2 class="section__title" id="configurator-title">Соберите свой адресник</h2>
+        </div>
+        <p class="section__lead">Форма, цвет, размер и гравировка — превью обновляется сразу.</p>
+
+        <!-- TODO: заглушка. Здесь появится рабочий конфигуратор -->
+        <div class="config">
+          <span class="config__badge">Место под конфигуратор</span>
+          <span class="config__note">Рабочая область ≈ 1150 × 460 px</span>
+
+          <div class="config__preview">
+            <div class="tag-art" role="img" aria-label="Пример адресника-косточки с гравировкой имени">
+              <span class="tag-art__ring"><span><img src="assets/icons/preview-ring.svg" alt=""></span></span>
+              <span class="tag-art__bone"><img src="assets/icons/preview-bone.svg" alt=""></span>
+              <span class="tag-art__dot"><img src="assets/icons/preview-dot.svg" alt=""></span>
+              <span class="tag-art__name">ЛЕКС</span>
+            </div>
+            <p class="config__preview-title">Превью адресника</p>
+            <p class="config__preview-sub">Форма · цвет · гравировка</p>
+          </div>
+
+          <div class="config__side">
+            <ul class="config__rows">
+              <li class="config__row"><span>Форма</span><span class="config__dash">—</span></li>
+              <li class="config__row"><span>Размер</span><span class="config__dash">—</span></li>
+              <li class="config__row"><span>Текст гравировки</span><span class="config__dash">—</span></li>
+              <li class="config__row"><span>Обвес</span><span class="config__dash">—</span></li>
+            </ul>
+            <div class="config__price">[ЦЕНА] · Кнопка «Создать ещё»</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Условия -->
+    <section class="section section--dark payment" id="payment" aria-labelledby="payment-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Оплата и доставка</p>
+          <h2 class="section__title" id="payment-title">От заказа до дома</h2>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-card__icon">
+              <span class="icon-card"><span><img src="assets/icons/pay-card.svg" alt=""></span></span>
+            </div>
+            <h3 class="info-card__title">Способы оплаты</h3>
+            <ul class="rows">
+              <li><span class="rows__label">Банковская карта</span><span class="rows__value">онлайн, на сайте</span></li>
+              <li><span class="rows__label">СБП</span><span class="rows__value">по QR-коду или ссылке</span></li>
+              <li><span class="rows__label">[Другой способ]</span><span class="rows__value">[по вашему списку]</span></li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card__icon">
+              <img src="assets/icons/pay-delivery.svg" width="26" height="26" alt="">
+            </div>
+            <h3 class="info-card__title">Условия доставки</h3>
+            <ul class="rows">
+              <li><span class="rows__label">Курьером</span><span class="rows__value">[города · стоимость]</span></li>
+              <li><span class="rows__label">В пункт выдачи</span><span class="rows__value">[служба · стоимость]</span></li>
+              <li><span class="rows__label">Самовывоз</span><span class="rows__value">[адрес]</span></li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <div class="info-card__icon">
+              <img src="assets/icons/pay-terms.svg" width="26" height="26" alt="">
+            </div>
+            <h3 class="info-card__title">Сроки изготовления</h3>
+            <ul class="rows">
+              <li><span class="rows__label">Макет и проверка</span><span class="rows__value">[N] ч</span></li>
+              <li><span class="rows__label">Гравировка и сборка</span><span class="rows__value">[N] дн.</span></li>
+              <li><span class="rows__label">Отправка</span><span class="rows__value">[N] дн.</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="contact-bar">
+          <p>Остались вопросы? Напишите нам — подскажем и поможем собрать адресник.</p>
+          <a class="btn btn--ghost" href="#contacts">Связаться</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Отзывы -->
+    <section class="section section--light reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Отзывы</p>
+          <h2 class="section__title" id="reviews-title">Что говорят хозяева</h2>
+        </div>
+        <div class="review-grid">
+          <figure class="review">
+            <span class="review__mark" aria-hidden="true">“</span>
+            <blockquote class="review__text">Здесь будет настоящий отзыв клиента: 2–3 предложения о том, как адресник пригодился на прогулке.</blockquote>
+            <figcaption class="review__author">
+              <span class="review__avatar" aria-hidden="true"></span>
+              <span class="review__who"><b>Джесси · русский спаниель</b><span>Новосибирск</span></span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <span class="review__mark" aria-hidden="true">“</span>
+            <blockquote class="review__text">Короткий отзыв — одна-две строки о качестве и о том, как легко было собрать адресник.</blockquote>
+            <figcaption class="review__author">
+              <span class="review__avatar" aria-hidden="true"></span>
+              <span class="review__who"><b>Багги · той-пудель</b><span>Новосибирск</span></span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <span class="review__mark" aria-hidden="true">“</span>
+            <blockquote class="review__text">Отзыв с фото: рядом можно показать хозяина с собакой и адресником.</blockquote>
+            <figcaption class="review__author">
+              <span class="review__avatar" aria-hidden="true"></span>
+              <span class="review__who"><b>Лорд · дворняга</b><span>Новосибирск</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Футер -->
+  <footer class="footer" id="contacts">
+    <img class="footer__mark" src="assets/icons/footer-mark.svg" width="620" height="620" alt="">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="footer__logo" href="#top" aria-label="Метка — в начало страницы">
+            <span class="fl fl--1"><span><img src="assets/icons/footer-logo-1.svg" alt=""></span></span>
+            <span class="fl fl--2"><span><img src="assets/icons/footer-logo-2.svg" alt=""></span></span>
+            <span class="fl fl--3"><img src="assets/icons/footer-logo-3.svg" alt=""></span>
+          </a>
+          <p class="footer__tagline">Для тех, кого ждут дома.</p>
+          <a class="btn btn--primary" href="#configurator">Собрать адресник</a>
+        </div>
+
+        <nav class="footer__col" aria-label="Страницы">
+          <h3 class="footer__title">Страница</h3>
+          <ul>
+            <li><a href="#advantages">Преимущества</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#configurator">Конструктор</a></li>
+            <li><a href="#payment">Оплата и доставка</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__col">
+          <h3 class="footer__title">Контакты</h3>
+          <!-- Контактные данные тестовые; ссылки Telegram / MAX / соцсетей — заглушки -->
+          <ul>
+            <li><a href="tel:+79991234567">+7-999-123-45-67</a></li>
+            <li><a href="mailto:metka_x@example.ru">metka_x@example.ru</a></li>
+            <li><a href="#" data-placeholder>Telegram</a></li>
+            <li><a href="#" data-placeholder>MAX</a></li>
+            <li><a href="#" data-placeholder>Direct + Threads</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 Метка</span>
+        <span>[Юридическая информация · ИНН]</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

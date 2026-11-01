@@ -142,25 +142,24 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 
 /* Сцена с превью */
 .config__stage{position:relative;min-height:450px;overflow:hidden;border-radius:24px;background:radial-gradient(70% 62% at 50% 44%,#3b3b3b 0,#262626 62%,#202020 100%);box-shadow:inset 0 0 0 1px var(--line);isolation:isolate}
-.tag{--k:1.1;--cy:-16px;--top:calc(50% - 174 * var(--k) * 1px + var(--cy));position:absolute;inset:0}
+/* Надпись стоит в одной точке на всех формах (эталон — круг): 248 px от верха картинки, площадка 150 px. Значения в пикселях исходных превью */
+.tag{--k:1.1;--cy:-16px;--tw:150;--ty:248;--top:calc(50% - 174 * var(--k) * 1px + var(--cy));position:absolute;inset:0}
 .tag__img{position:absolute;left:50%;top:var(--top);width:calc(var(--w) * var(--k) * 1px);height:auto;max-width:none;transform:translateX(-50%);opacity:0;filter:drop-shadow(0 16px 18px rgba(0,0,0,.42));transition:opacity .3s ease;pointer-events:none;-webkit-user-select:none;user-select:none}
 .tag__img.is-active{opacity:1}
 .tag__img[data-shape=bone]{--w:320}
 .tag__img[data-shape=heart]{--w:216}
 .tag__img[data-shape=circle]{--w:200}
 
-/* Площадка под текст: центр относительно центра картинки и ширина — в пикселях исходных превью */
-.config__stage[data-shape=bone]{--tw:240;--ty:248;--fs:34}
-.config__stage[data-shape=heart]{--tw:136;--ty:232;--fs:26}
-.config__stage[data-shape=circle]{--tw:150;--ty:248;--fs:28}
 .config__stage[data-color=silver]{--e-fill:rgba(92,94,100,.8);--e-shade:rgba(0,0,0,.3);--e-hi:rgba(255,255,255,.95)}
 .config__stage[data-color=gold]{--e-fill:rgba(132,112,66,.76);--e-shade:rgba(60,40,0,.3);--e-hi:rgba(255,253,244,.95)}
 .config__stage[data-color=rose]{--e-fill:rgba(146,96,106,.74);--e-shade:rgba(70,20,30,.28);--e-hi:rgba(255,248,249,.95)}
 
-.tag__text{position:absolute;left:50%;top:calc(var(--top) + var(--ty) * var(--k) * 1px);width:calc(var(--tw) * var(--k) * 1px);transform:translate(-50%,-50%);text-align:center;white-space:nowrap;line-height:1;pointer-events:none;-webkit-user-select:none;user-select:none;transition:top .3s ease}
+.tag__text{position:absolute;left:50%;top:calc(var(--top) + var(--ty) * var(--k) * 1px);--fit:calc(40 * var(--k) * 1px);display:flex;justify-content:center;width:calc(var(--tw) * var(--k) * 1px);transform:translate(-50%,calc(-50% - var(--fit) * .03));text-align:center;white-space:nowrap;line-height:1;pointer-events:none;-webkit-user-select:none;user-select:none}
 /* Тиснение: тёмная вдавленная надпись, снизу — светлая кромка, сверху — тонкая тень */
-.tag__label{position:relative;isolation:isolate;display:inline-block;min-height:1em;font:700 var(--fit,calc(var(--fs) * var(--k) * 1px))/1 var(--font);letter-spacing:.04em;text-transform:uppercase;color:var(--e-fill);text-shadow:0 -1px 0 var(--e-shade)}
+.tag__label{position:relative;isolation:isolate;display:inline-block;min-height:1em;font:700 var(--fit)/1 var(--font);letter-spacing:.04em;text-transform:uppercase;color:var(--e-fill);text-shadow:0 -1px 0 var(--e-shade)}
 .tag__label::before{content:attr(data-text);position:absolute;left:0;top:1px;z-index:-1;color:var(--e-hi);text-shadow:none}
+/* Невидимая копия надписи: по ней считаем ширину текста при кегле 100 px */
+.tag__label--measure{position:absolute;left:0;top:0;visibility:hidden;font-size:100px}
 
 .config__caption{position:absolute;left:16px;right:16px;bottom:18px;font-size:15px;line-height:23px;text-align:center;color:var(--muted)}
 

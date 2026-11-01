@@ -16,11 +16,18 @@
   var shapeInputs = [].slice.call(root.querySelectorAll('input[name="shape"]'));
   var colorInputs = [].slice.call(root.querySelectorAll('input[name="color"]'));
 
-  var MIN_FONT_PX = 6;
+  var MAX_FONT_PX = 84;      // кегль надписи из одной буквы (в пикселях исходных превью)
+  var MIN_FONT_PX = 12;      // кегль надписи из максимального числа букв
   var MAX_SCALE = 1.1;       // во сколько раз показываем превью относительно исходных файлов
   var WIDEST_TAG_PX = 320;   // косточка
   var TALLEST_TAG_PX = 348;  // сердечко и круг вместе с кольцом
   var firstFocus = true;
+  var scale = 1;
+  var measurer = label.cloneNode(false);
+  measurer.removeAttribute('data-text');
+  measurer.className = 'tag__label tag__label--measure';
+  measurer.setAttribute('aria-hidden', 'true');
+  textBox.appendChild(measurer);
 
   function checked(inputs) {
     for (var i = 0; i < inputs.length; i++) if (inputs[i].checked) return inputs[i];
@@ -36,18 +43,27 @@
     var width = stage.clientWidth;
     var height = stage.clientHeight;
     if (!width || !height) return;
-    var scale = Math.min(MAX_SCALE, (width - 32) / WIDEST_TAG_PX, (height - 72) / TALLEST_TAG_PX);
-    tag.style.setProperty('--k', Math.max(0.4, scale).toFixed(3));
+    scale = Math.max(0.4, Math.min(MAX_SCALE, (width - 32) / WIDEST_TAG_PX, (height - 72) / TALLEST_TAG_PX));
+    tag.style.setProperty('--k', scale.toFixed(3));
   }
 
-  // Подгоняем размер шрифта, чтобы надпись целиком помещалась на площадке адресника
+  // Ширина текста при кегле 1 px (считаем по невидимой копии, чтобы не зависеть от текущего размера)
+  function widthPerPx(text) {
+    measurer.textContent = text;
+    return measurer.getBoundingClientRect().width / 100;
+  }
+
+  // Кегль зависит от числа букв: одна буква — самый крупный, дальше с каждой новой меньше.
+  // Если надпись всё равно шире площадки (например, «ШШШШ»), добавляем страховку по ширине
   function fit() {
-    textBox.style.removeProperty('--fit');
+    var text = label.textContent;
+    var max = input.maxLength > 1 ? input.maxLength : 16;
+    var progress = Math.min(1, Math.max(0, (text.length - 1) / (max - 1)));
+    var size = (MAX_FONT_PX - (MAX_FONT_PX - MIN_FONT_PX) * progress) * scale;
     var boxWidth = textBox.clientWidth;
-    var textWidth = label.getBoundingClientRect().width;
-    if (!boxWidth || !textWidth || textWidth <= boxWidth) return;
-    var fontSize = parseFloat(window.getComputedStyle(label).fontSize);
-    textBox.style.setProperty('--fit', Math.max(MIN_FONT_PX, fontSize * boxWidth / textWidth) + 'px');
+    var perPx = text ? widthPerPx(text) : 0;
+    if (boxWidth && perPx && perPx * size > boxWidth) size = boxWidth / perPx;
+    textBox.style.setProperty('--fit', size.toFixed(2) + 'px');
   }
 
   function describe() {

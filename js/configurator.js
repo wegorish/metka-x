@@ -24,6 +24,7 @@
   var TALLEST_TAG_PX = 348;  // сердечко и круг вместе с кольцом
   var firstFocus = true;
   var scale = 1;
+  var unit = 1;              // реальных пикселей в одном «логическом» пикселе макета: на десктопе 0.8 (масштаб 80%), ниже 1200 px — 1
   var measurer = label.cloneNode(false);
   measurer.removeAttribute('data-text');
   measurer.className = 'tag__label tag__label--measure';
@@ -39,10 +40,16 @@
     return radio.closest('.opt').querySelector('.opt__name').textContent.trim();
   }
 
+  // Размеры в CSS заданы в rem, а на десктопе корневой кегль 80%. Единицу берём из него, чтобы считать в «логических» пикселях макета
+  function readUnit() {
+    unit = (parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16) / 16;
+  }
+
   // Масштаб адресника зависит от размера сцены: на узких экранах косточка не должна упираться в края
   function layout() {
-    var width = stage.clientWidth;
-    var height = stage.clientHeight;
+    readUnit();
+    var width = stage.clientWidth / unit;
+    var height = stage.clientHeight / unit;
     if (!width || !height) return;
     scale = Math.max(0.4, Math.min(MAX_SCALE, (width - 32) / WIDEST_TAG_PX, (height - 72) / TALLEST_TAG_PX));
     tag.style.setProperty('--k', scale.toFixed(3));
@@ -60,7 +67,7 @@
     var text = label.textContent;
     var max = input.maxLength > 1 ? input.maxLength : 16;
     var progress = Math.min(1, Math.max(0, (text.length - 1) / (max - 1)));
-    var size = (MAX_FONT_PX - (MAX_FONT_PX - MIN_FONT_PX) * progress) * scale;
+    var size = (MAX_FONT_PX - (MAX_FONT_PX - MIN_FONT_PX) * progress) * scale * unit;   // в реальных пикселях
     var boxWidth = textBox.clientWidth;
     var perPx = text ? widthPerPx(text) : 0;
     if (boxWidth && perPx && perPx * size > boxWidth) size = boxWidth / perPx;

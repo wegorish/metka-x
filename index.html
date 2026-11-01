@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
   <script src="js/configurator.js" defer></script>
+  <script src="js/order.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">К содержимому</a>
@@ -46,8 +47,8 @@
         <div class="hero__content">
           <h1 class="hero__title" id="hero-title">Для тех, кого<br>ждут <span class="accent">дома</span></h1>
           <p class="hero__lead">
-            <span>Адресники для собак с вашими контактами.</span>
-            <span>Выберите форму, цвет и размер в конструкторе.</span>
+            <span>Адресники для собак с&nbsp;вашими контактами.</span>
+            <span>Выберите форму, цвет и размер в&nbsp;конструкторе.</span>
           </p>
           <div class="hero__actions">
             <a class="btn btn--primary" href="#configurator">Собрать адресник</a>
@@ -110,8 +111,7 @@
           <p class="eyebrow">Галерея</p>
           <h2 class="section__title" id="gallery-title">Питомцы с адресниками</h2>
         </div>
-        <!-- TODO: кнопка пока не активна — подгрузка остальных фото будет добавлена позже -->
-        <button class="btn btn--outline gallery__more" type="button">Смотреть ещё</button>
+        <a class="btn btn--outline gallery__more" href="https://www.threads.com/@metka.x" target="_blank" rel="noopener noreferrer" aria-label="Смотреть ещё в Threads (откроется в новой вкладке)">Смотреть ещё</a>
         <div class="gallery">
           <figure class="gallery__item g1"><img src="assets/img/gallery-1.webp" alt="Полосатый кот с кожаным ошейником и круглым адресником" width="1179" height="940" loading="lazy"></figure>
           <figure class="gallery__item g2"><img src="assets/img/gallery-2.webp" alt="Корги с круглым адресником на фоне книжных полок" width="570" height="940" loading="lazy"></figure>
@@ -153,21 +153,21 @@
               <legend class="field__legend">Форма</legend>
               <div class="opts">
             <label class="opt">
-              <input class="opt__input" type="radio" name="shape" value="circle">
+              <input class="opt__input" type="radio" name="shape" value="circle" data-price="990">
               <span class="opt__card">
                 <img class="opt__thumb" data-thumb="circle" src="assets/img/tags/circle-silver.webp" width="400" height="695" alt="">
                 <span class="opt__name">Круг</span>
               </span>
             </label>
             <label class="opt">
-              <input class="opt__input" type="radio" name="shape" value="heart">
+              <input class="opt__input" type="radio" name="shape" value="heart" data-price="1190">
               <span class="opt__card">
                 <img class="opt__thumb" data-thumb="heart" src="assets/img/tags/heart-silver.webp" width="432" height="695" alt="">
                 <span class="opt__name">Сердечко</span>
               </span>
             </label>
             <label class="opt">
-              <input class="opt__input" type="radio" name="shape" value="bone" checked>
+              <input class="opt__input" type="radio" name="shape" value="bone" data-price="1490" checked>
               <span class="opt__card">
                 <img class="opt__thumb" data-thumb="bone" src="assets/img/tags/bone-silver.webp" width="640" height="653" alt="">
                 <span class="opt__name">Косточка</span>
@@ -212,10 +212,10 @@
               <p class="field__hint">Кличка или короткая надпись — появится на адреснике как тиснение.</p>
             </div>
 
-            <!-- TODO: цена и способ оформления заказа. Пока кнопка ведёт к контактам -->
+            <!-- Цена зависит только от формы (data-price у радиокнопок «Форма»); текст цены ставит js/configurator.js -->
             <div class="config__order">
-              <p class="config__price">[ЦЕНА]</p>
-              <a class="btn btn--primary" href="#contacts">Заказать</a>
+              <p class="config__price">от&nbsp;1&nbsp;490&nbsp;₽</p>
+              <button class="btn btn--primary" type="button" data-order-open aria-haspopup="dialog">Заказать</button>
             </div>
           </div>
         </div>
@@ -349,5 +349,51 @@
       </div>
     </div>
   </footer>
+
+  <!-- Форма заказа: выезжает сверху по кнопке «Заказать» в конструкторе. Сайт тестовый — заявка никуда не отправляется -->
+  <dialog class="order" id="order" aria-labelledby="order-title">
+    <form class="order__panel" id="order-form" novalidate>
+      <div class="order__head">
+        <h2 class="order__title" id="order-title" tabindex="-1">Оформление заказа</h2>
+        <button class="order__close" type="button" aria-label="Закрыть форму" data-order-close>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="order__fields">
+        <div class="field">
+          <label class="field__legend" for="order-name">ФИО</label>
+          <input class="input__control input__control--plain" id="order-name" name="name" type="text" required autocomplete="name" placeholder="Иванов Иван Иванович" aria-describedby="order-name-error">
+          <p class="order__error" id="order-name-error" hidden></p>
+        </div>
+        <div class="field">
+          <label class="field__legend" for="order-contact">Контакты</label>
+          <input class="input__control input__control--plain" id="order-contact" name="contact" type="text" required autocomplete="off" placeholder="Телефон, e-mail или мессенджер" aria-describedby="order-contact-error">
+          <p class="order__error" id="order-contact-error" hidden></p>
+        </div>
+      </div>
+
+      <!-- Чекаут в две строки: выбранные параметры и цена -->
+      <div class="checkout">
+        <div class="checkout__row">
+          <dl class="checkout__params">
+            <div><dt>Форма</dt><dd data-order-shape>Косточка</dd></div>
+            <div><dt>Цвет</dt><dd data-order-color>Серебристый</dd></div>
+            <div><dt>Текст</dt><dd data-order-text>ЛЕКС</dd></div>
+          </dl>
+        </div>
+        <div class="checkout__row checkout__row--price">
+          <span class="checkout__label">Цена</span>
+          <span class="checkout__price" data-order-price>от&nbsp;1&nbsp;490&nbsp;₽</span>
+        </div>
+      </div>
+      <p class="order__note">Точную сумму назовёт менеджер в переписке.</p>
+
+      <button class="btn btn--primary order__submit" type="submit">Заказать</button>
+    </form>
+  </dialog>
+
+  <!-- Уведомление в правом верхнем углу; текст подставляет js/order.js -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>

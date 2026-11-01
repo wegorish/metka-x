@@ -13,6 +13,7 @@
   var caption = root.querySelector('.config__caption');
   var input = document.getElementById('tag-text');
   var counter = root.querySelector('.input__count');
+  var priceEl = root.querySelector('.config__price');
   var shapeInputs = [].slice.call(root.querySelectorAll('input[name="shape"]'));
   var colorInputs = [].slice.call(root.querySelectorAll('input[name="color"]'));
 
@@ -66,6 +67,11 @@
     textBox.style.setProperty('--fit', size.toFixed(2) + 'px');
   }
 
+  // 1190 → «от 1 190 ₽» (неразрывные пробелы, чтобы цена не рвалась на две строки)
+  function formatPrice(value) {
+    return 'от ' + String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+  }
+
   function describe() {
     var shape = optionName(checked(shapeInputs));
     var color = optionName(checked(colorInputs));
@@ -78,6 +84,8 @@
   function updateOptions() {
     var shape = checked(shapeInputs).value;
     var color = checked(colorInputs).value;
+    // Цена зависит только от формы: от цвета и текста не меняется
+    priceEl.textContent = formatPrice(checked(shapeInputs).getAttribute('data-price'));
     stage.setAttribute('data-shape', shape);
     stage.setAttribute('data-color', color);
     images.forEach(function (img) {
@@ -124,4 +132,16 @@
   layout();
   updateOptions();
   updateText();
+
+  // Выбранные параметры для формы заказа (js/order.js)
+  window.MetkaConfigurator = {
+    getState: function () {
+      return {
+        shape: optionName(checked(shapeInputs)),
+        color: optionName(checked(colorInputs)),
+        text: label.textContent,
+        price: priceEl.textContent
+      };
+    }
+  };
 })();

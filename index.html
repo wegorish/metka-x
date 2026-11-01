@@ -14,6 +14,7 @@
   <link rel="preload" href="assets/fonts/golos-text-cyrillic-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
+  <script src="js/configurator.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">К содержимому</a>
@@ -128,27 +129,94 @@
           <p class="eyebrow">Конструктор</p>
           <h2 class="section__title" id="configurator-title">Соберите свой адресник</h2>
         </div>
-        <p class="section__lead">Форма, цвет, размер и гравировка — превью обновляется сразу.</p>
+        <p class="section__lead">Форма, цвет и текст — превью обновляется сразу.</p>
 
-        <!-- TODO: заглушка. Здесь появится рабочий конфигуратор -->
-        <div class="config">
-          <span class="config__badge">Место под конфигуратор</span>
-          <span class="config__note">Рабочая область ≈ 1150 × 460 px</span>
-
-          <div class="config__preview">
-            <img class="tag-art" src="assets/icons/tag-preview.svg" width="260" height="195" alt="Пример адресника-косточки с гравировкой имени «Лекс»">
-            <p class="config__preview-title">Превью адресника</p>
-            <p class="config__preview-sub">Форма · цвет · гравировка</p>
+        <div class="config" id="config">
+          <div class="config__stage" data-shape="bone" data-color="silver">
+            <div class="tag" role="img" aria-label="Превью адресника: косточка, серебристый, надпись «ЛЕКС»">
+              <img class="tag__img is-active" data-shape="bone" data-color="silver" src="assets/img/tags/bone-silver.webp" width="320" height="327" alt="">
+              <img class="tag__img" data-shape="bone" data-color="gold" src="assets/img/tags/bone-gold.webp" width="320" height="327" alt="">
+              <img class="tag__img" data-shape="bone" data-color="rose" src="assets/img/tags/bone-rose.webp" width="320" height="327" alt="">
+              <img class="tag__img" data-shape="heart" data-color="silver" src="assets/img/tags/heart-silver.webp" width="216" height="348" alt="">
+              <img class="tag__img" data-shape="heart" data-color="gold" src="assets/img/tags/heart-gold.webp" width="216" height="348" alt="">
+              <img class="tag__img" data-shape="heart" data-color="rose" src="assets/img/tags/heart-rose.webp" width="216" height="348" alt="">
+              <img class="tag__img" data-shape="circle" data-color="silver" src="assets/img/tags/circle-silver.webp" width="200" height="348" alt="">
+              <img class="tag__img" data-shape="circle" data-color="gold" src="assets/img/tags/circle-gold.webp" width="200" height="348" alt="">
+              <img class="tag__img" data-shape="circle" data-color="rose" src="assets/img/tags/circle-rose.webp" width="200" height="348" alt="">
+              <div class="tag__text" aria-hidden="true"><span class="tag__label" data-text="Лекс">Лекс</span></div>
+            </div>
+            <p class="config__caption">Косточка · Серебристый</p>
           </div>
 
-          <div class="config__side">
-            <ul class="config__rows">
-              <li class="config__row"><span>Форма</span><span class="config__dash">—</span></li>
-              <li class="config__row"><span>Размер</span><span class="config__dash">—</span></li>
-              <li class="config__row"><span>Текст гравировки</span><span class="config__dash">—</span></li>
-              <li class="config__row"><span>Обвес</span><span class="config__dash">—</span></li>
-            </ul>
-            <div class="config__price">[ЦЕНА] · Кнопка «Создать ещё»</div>
+          <div class="config__form">
+            <fieldset class="field">
+              <legend class="field__legend">Форма</legend>
+              <div class="opts">
+            <label class="opt">
+              <input class="opt__input" type="radio" name="shape" value="circle">
+              <span class="opt__card">
+                <img class="opt__thumb" data-thumb="circle" src="assets/img/tags/circle-silver.webp" width="200" height="348" alt="">
+                <span class="opt__name">Круг</span>
+              </span>
+            </label>
+            <label class="opt">
+              <input class="opt__input" type="radio" name="shape" value="heart">
+              <span class="opt__card">
+                <img class="opt__thumb" data-thumb="heart" src="assets/img/tags/heart-silver.webp" width="216" height="348" alt="">
+                <span class="opt__name">Сердечко</span>
+              </span>
+            </label>
+            <label class="opt">
+              <input class="opt__input" type="radio" name="shape" value="bone" checked>
+              <span class="opt__card">
+                <img class="opt__thumb" data-thumb="bone" src="assets/img/tags/bone-silver.webp" width="320" height="327" alt="">
+                <span class="opt__name">Косточка</span>
+              </span>
+            </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="field">
+              <legend class="field__legend">Цвет</legend>
+              <div class="opts opts--color">
+            <label class="opt">
+              <input class="opt__input" type="radio" name="color" value="silver" checked>
+              <span class="opt__card">
+                <span class="swatch swatch--silver" aria-hidden="true"></span>
+                <span class="opt__name">Серебристый</span>
+              </span>
+            </label>
+            <label class="opt">
+              <input class="opt__input" type="radio" name="color" value="gold">
+              <span class="opt__card">
+                <span class="swatch swatch--gold" aria-hidden="true"></span>
+                <span class="opt__name">Золотой</span>
+              </span>
+            </label>
+            <label class="opt">
+              <input class="opt__input" type="radio" name="color" value="rose">
+              <span class="opt__card">
+                <span class="swatch swatch--rose" aria-hidden="true"></span>
+                <span class="opt__name">Розовое золото</span>
+              </span>
+            </label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label class="field__legend" for="tag-text">Текст</label>
+              <div class="input">
+                <input class="input__control" id="tag-text" type="text" value="Лекс" maxlength="12" placeholder="Кличка питомца" autocomplete="off" spellcheck="false" enterkeyhint="done">
+                <span class="input__count" aria-hidden="true">4 / 12</span>
+              </div>
+              <p class="field__hint">Кличка или короткая надпись — появится на адреснике как тиснение.</p>
+            </div>
+
+            <!-- TODO: цена и способ оформления заказа. Пока кнопка ведёт к контактам -->
+            <div class="config__order">
+              <p class="config__price">[ЦЕНА]</p>
+              <a class="btn btn--primary" href="#contacts">Заказать</a>
+            </div>
           </div>
         </div>
       </div>
